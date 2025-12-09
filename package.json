@@ -1,0 +1,19 @@
+{
+  "name": "youtube_clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon -r dotenv/config src/index.js"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "Sheikh Muhammad Bilal",
+  "license": "ISC",
+  "devDependencies": {
+    "mongoose": "^9.0.1",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.4"
+  }
+}
