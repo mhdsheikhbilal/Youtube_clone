@@ -7,19 +7,19 @@ dotenv.config({
 });
 
 const port = process.env.PORT || 8080;
-connectDB().then(()=>{
+connectDB().then(() => {
     app.on("error", (error) => {
         console.error("Error in Express app:", error);
         throw error;
     });
 })
-.then(() => {
-    app.listen(port, () => {
-        console.log(`App is running on port ${port}`);
-    })
-}).catch((error) => {
-    console.error("Failed to start the server:", error);
-});
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`App is running on port ${port}`);
+        })
+    }).catch((error) => {
+        console.error("Failed to start the server:", error);
+    });
 
 
 
