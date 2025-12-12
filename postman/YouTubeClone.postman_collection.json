@@ -1,0 +1,126 @@
+{
+  "info": {
+    "name": "YouTube Clone - User Routes",
+    "_postman_id": "youtube-clone-user-routes",
+    "description": "Postman collection for user-related routes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "basePath", "value": "/api/users" },
+    { "key": "accessToken", "value": "" },
+    { "key": "refreshToken", "value": "" },
+    { "key": "username", "value": "testuser" },
+    { "key": "avatarFilePath", "value": "" },
+    { "key": "coverImageFilePath", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+        },
+        "url": "{{baseUrl}}{{basePath}}/refresh-token"
+      }
+    },
+    {
+      "name": "Change Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"currentPassword\": \"oldpass123\",\n  \"newPassword\": \"newpass123\"\n}"
+        },
+        "url": "{{baseUrl}}{{basePath}}/change-password"
+      }
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}{{basePath}}/current-user"
+      }
+    },
+    {
+      "name": "Update Account Details",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Updated Name\",\n  \"email\": \"updated@example.com\"\n}"
+        },
+        "url": "{{baseUrl}}{{basePath}}/update-account"
+      }
+    },
+    {
+      "name": "Update Avatar",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "avatar", "type": "file", "src": "{{avatarFilePath}}" }
+          ]
+        },
+        "url": "{{baseUrl}}{{basePath}}/avatar"
+      }
+    },
+    {
+      "name": "Update Cover Image",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "coverImage", "type": "file", "src": "{{coverImageFilePath}}" }
+          ]
+        },
+        "url": "{{baseUrl}}{{basePath}}/coverImage"
+      }
+    },
+    {
+      "name": "Get Channel Profile (by username)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}{{basePath}}/c/:username",
+        "description": "Replace :username in the URL or use the collection variable {{username}} (e.g. {{baseUrl}}{{basePath}}/c/{{username}})"
+      }
+    },
+    {
+      "name": "Get Watch History",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}{{basePath}}/history"
+      }
+    }
+  ]
+}
